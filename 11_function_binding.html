@@ -1,0 +1,62 @@
+<!-- basic this usage -->
+ <script type="text/javascript"> 
+ /* object */
+  var deep_thought = { 
+   the_answer: 42, 
+   ask_question: function () { 
+    return this.the_answer; 
+   } 
+  }; 
+  
+  var the_meaning = deep_thought.ask_question(); 
+ </script>
+
+
+
+<!-- this in constructor -->
+  <script type="text/javascript"> 
+  function BigComputer(answer) { 
+   this.the_answer = answer; 
+   this.ask_question = function () { 
+    return this.the_answer; 
+   } 
+  } 
+  
+  var deep_thought = new BigComputer(42); 
+  var the_meaning = deep_thought.ask_question(); 
+ </script>
+
+
+ <!-- function call -->
+
+  <script type="text/javascript"> 
+  function test_this() { 
+   return this; 
+   /* here this is window object */
+  } 
+  var i_wonder_what_this_is = test_this(); 
+ </script>
+
+
+
+ <!-- Event Handler -->
+
+<script type="text/javascript"> 
+ function BigComputer(answer) { 
+  this.the_answer = answer; 
+  this.ask_question = function () { 
+  	/* here this is DOM element that generated this event */
+   alert(this.the_answer); 
+  } 
+ } 
+  
+ function addhandler() { 
+  var deep_thought = new BigComputer(42), 
+   the_button = document.getElementById('thebutton'); 
+  
+  the_button.onclick = deep_thought.ask_question; 
+  deep_thought.call(ask_question);
+ } 
+  
+ window.onload = addhandler; 
+</script>
